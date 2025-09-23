@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8" />
+	<title>テスト</title>
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/2.3.3/js/dataTables.min.js"></script>
+	<link rel="stylesheet" href="./assets/styles/test.css">
+	<script type="importmap">
+		{
+			"imports": {
+				"paradox/": "../src/"
+			}
+		}
+	</script>
+	<script type="module">
+		import pdx_search from 'paradox/pdx-search.js';
+		let pdx = pdx_search();
+
+		// テーブルの実行
+		new DataTable('#table', {
+			responsive: true,
+			paging: false,
+		});
+		(async _ => {
+			pdx.entryPow1 = 1;
+			pdx.entryPow4 = 1;
+			pdx.entrySpd1 = 1;
+			pdx.entrySpd4 = 1;
+			pdx.entryWiz1 = 1;
+			pdx.entryWiz4 = 1;
+			pdx.filterMaxSkillBound = 8;
+			let result = await pdx.generate();
+
+			// テーブル再描画
+			$('#table').DataTable().clear().destroy();
+			$('#table').DataTable({
+				data: result.map(innerArray => innerArray.map(item => item.name)),
+				columns: Object.keys(result[0] || {}).map(key => ({
+					data: key,
+					title: key,
+				})),
+				responsive: true,
+				paging: false,
+			});
+		})();
+	</script>
+</head>
+
+<body>
+
+<table id="table">
+	<thead></thead>
+	<tbody></tbody>
+</table>
+
+</body>
+</html>

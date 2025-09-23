@@ -1,0 +1,10 @@
+#query {
+	width: 360px;
+	height: 120px;
+	vertical-align: bottom;
+	overflow-y: scroll;
+	resize: none;
+}
+#done {
+	cursor: pointer;
+}
