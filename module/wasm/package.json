@@ -1,0 +1,15 @@
+{
+  "name": "paradox-combination-wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "paradox_combination_wasm_bg.wasm",
+    "paradox_combination_wasm.js",
+    "paradox_combination_wasm.d.ts"
+  ],
+  "main": "paradox_combination_wasm.js",
+  "types": "paradox_combination_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
